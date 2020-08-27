@@ -1,0 +1,30 @@
+{
+  "name": "async-testing-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "sinon": "^9.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.2"
+  },
+  "scripts": {
+    "test": "mocha -r esm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkissingappfolio/async-testing-examples.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/tkissingappfolio/async-testing-examples/issues"
+  },
+  "homepage": "https://github.com/tkissingappfolio/async-testing-examples#readme"
+}
