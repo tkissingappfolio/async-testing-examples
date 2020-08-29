@@ -19,14 +19,8 @@ describe('SomeClass', () => {
     it('sets results when api request succeeds', () => {
        const someClass = new SomeClass();
        const someData = ['hello'];
-       let res;
-       let rej;
-       const myPromise = new Promise((resolve, reject) => {
-           res = resolve;
-           rej = reject;
-       });
 
-       sandbox.stub(apiHelper, 'get').returns(myPromise);
+       sandbox.stub(apiHelper, 'get').resolves(someData);
 
        // Assert that it is not loading
        assert.equal(someClass.isLoading, false);
@@ -36,9 +30,6 @@ describe('SomeClass', () => {
 
        // Assert it is loading
        assert(someClass.isLoading);
-
-       // Now we resolve the promise so it can execute the .then chain
-       res(someData);
 
        return getDataFromApiPromise.then(() => {
            assert.deepEqual(someClass.results, someData);
@@ -50,14 +41,8 @@ describe('SomeClass', () => {
     it('sets error when api request fails', () => {
        const someClass = new SomeClass();
        const someError = new Error('this is an error');
-       let res;
-       let rej;
-       const myPromise = new Promise((resolve, reject) => {
-           res = resolve;
-           rej = reject;
-       });
 
-       sandbox.stub(apiHelper, 'get').returns(myPromise);
+       sandbox.stub(apiHelper, 'get').rejects(someError);
 
        // Assert that it is not loading
        assert.equal(someClass.isLoading, false);
@@ -67,9 +52,6 @@ describe('SomeClass', () => {
 
        // Assert it is loading
        assert(someClass.isLoading);
-
-       // Now we reject the promise so it can execute .then chain
-       rej(someError);
 
        return getDataFromApiPromise.then(() => {
            assert.deepEqual(someClass.results, []);
